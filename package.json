@@ -1,0 +1,22 @@
+{
+  "name": "album-inventory",
+  "version": "1.0.0",
+  "description": "KPOP Album Invenotory System",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node main",
+    "dev": "nodemon main"
+  },
+  "author": "Marco Nabung",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
+    "moment": "^2.29.1",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

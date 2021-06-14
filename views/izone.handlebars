@@ -1,0 +1,14 @@
+<h1>{{title}}</h1>
+<ul>
+    {{#each albums}}
+    <li>
+        <div class="description">
+            <h3>Album ID: {{this.id}}</h3>
+            <h3>Title: {{this.title}}</h3>
+            <h4>Release Date: {{this.released_date}}</h4>
+            <h4>Price: PHP {{this.price}}</h4>
+        </div>
+        <img src="{{this.imgsrc}}" alt="IZ*ONE Album">
+    </li>
+    {{/each}}
+</ul>

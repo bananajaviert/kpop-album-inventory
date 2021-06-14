@@ -1,0 +1,10 @@
+<h1>{{title}}</h1>
+<ul>
+    {{#each albums}}
+    <li>
+        <h3>Title: {{this.title}}</h3>
+        <h4>Released Date: {{this.released_date}}</h4>
+        <h4>Price: {{this.price}}</h4>
+    </li>
+    {{/each}}
+</ul>
