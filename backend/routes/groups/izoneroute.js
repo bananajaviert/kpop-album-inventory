@@ -1,16 +1,15 @@
 import express from 'express'
-import * as uuid from 'uuid'
-import moment from 'moment'
 import { albums as izonealbums } from '../../data/izone.js'
-import { albums as albumtext} from '../../../main.js'
 
 const router = express.Router()
+const icon = 'https://twibbon.blob.core.windows.net/twibbon/2018/246/26466e7d-24ee-4a39-96c8-2546db4d7c8d.png'
 
 // READ
 
 // Get all albums
-router.get('/', async(req, res) => res.render('izone.handlebars', {
-    title: albumtext,
+router.get('/', (req, res) => res.render('izone.handlebars', {
+    icon: icon,
+    title: `IZ*ONE`,
     albums: izonealbums
 }))
 
@@ -22,6 +21,7 @@ router.get('/:id', (req, res) => {
 
     if(found) {
         res.status(200).render('izone.handlebars', {
+            icon: icon,
             title: `Album ${req.params.id}`,
             albums: izonealbums.filter(album => {
                 return album.id === parseInt(req.params.id)
@@ -30,7 +30,8 @@ router.get('/:id', (req, res) => {
     }
     if(!found) {
         res.status(404).render('404.handlebars', {
-            message: `404 Not Found`,
+            returnlink: '/groups/izone',
+            message: `Server responded 404 NOT FOUND`,
             description: `Album does not exists. Please check search ID or try again later.`
         })
     }
@@ -38,7 +39,7 @@ router.get('/:id', (req, res) => {
 
 class Counter {
     constructor() {
-        this.initial_count = 9
+        this.initial_count = izonealbums.length + 1
     }
     count = () => {
         return this.initial_count++
@@ -59,6 +60,7 @@ router.post('/', (req, res) => {
 
     if(!newAlbum.title || !newAlbum.imgsrc || !newAlbum.price) {
         return res.status(400).render('error.handlebars', {
+            returnlink: '/groups/izone',
             title: `ERROR`,
             message: `Please enter title, image source, and price`
         })
@@ -83,9 +85,11 @@ router.put('/:id', (req, res) => {
                 album.title = updateAlbum.title? updateAlbum.title : album.title
                 album.released_date = updateAlbum.released_date ? updateAlbum.released_date : album.released_date
                 album.price = updateAlbum.price ? updateAlbum.price: album.price
+                album.imgsrc = updateAlbum.imgsrc ? updateAlbum.imgsrc: album.imgsrc
             }
 
             res.status(200).render('izone.handlebars', {
+                icon: icon,
                 title: `Album ${req.params.id}`,
                 albums: izonealbums.filter(album => {
                     return album.id === parseInt(req.params.id)
@@ -95,6 +99,7 @@ router.put('/:id', (req, res) => {
     }
     if(!found) {
         res.status(404).render('404.handlebars', {
+            returnlink: '/groups/izone',
             message: `404 Not Found`,
             description: `Album does not exists. Please check search ID or try again later.`
         })
@@ -109,6 +114,7 @@ router.delete('/:id', (req, res) => {
 
     if(found) {
         res.status(200).render('izone.handlebars', {
+            icon: icon,
             title: `Album ${req.params.id}`,
             albums: izonealbums.filter(album => {
                 // Returns all albums except
@@ -118,6 +124,7 @@ router.delete('/:id', (req, res) => {
     }
     if(!found) {
         res.status(404).render('404.handlebars', {
+            returnlink: '/groups/izone',
             message: `404 Not Found`,
             description: `Album does not exists. Please check search ID or try again later.`
         })

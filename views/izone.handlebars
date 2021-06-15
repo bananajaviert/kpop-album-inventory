@@ -1,3 +1,22 @@
+<form action="/groups/izone" method="POST">
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" name="title">
+    </div>
+    <div>
+        <label for="imgsrc">Image link:</label>
+        <input type="text" name="imgsrc">
+    </div>
+    <div>
+        <label for="released_date">Release date:</label>
+        <input type="text" name="released_date">
+    </div>
+    <div>
+        <label for="price">Price:</label>
+        <input type="text" name="price">
+    </div>
+    <button type="submit" value="Add album">ADD</button>
+</form>
 <h1>{{title}}</h1>
 <ul>
     {{#each albums}}

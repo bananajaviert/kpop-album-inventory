@@ -1,10 +1,33 @@
+<form action="/groups/loona" method="POST">
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" name="title">
+    </div>
+    <div>
+        <label for="imgsrc">Image link:</label>
+        <input type="text" name="imgsrc">
+    </div>
+    <div>
+        <label for="released_date">Release date:</label>
+        <input type="text" name="released_date">
+    </div>
+    <div>
+        <label for="price">Price:</label>
+        <input type="text" name="price">
+    </div>
+    <button type="submit" value="Add album">ADD</button>
+</form>
 <h1>{{title}}</h1>
 <ul>
     {{#each albums}}
     <li>
-        <h3>Title: {{this.title}}</h3>
-        <h4>Released Date: {{this.released_date}}</h4>
-        <h4>Price: {{this.price}}</h4>
+        <div class="description">
+            <h3>Album ID: {{this.id}}</h3>
+            <h3>Title: {{this.title}}</h3>
+            <h4>Release Date: {{this.released_date}}</h4>
+            <h4>Price: PHP {{this.price}}</h4>
+        </div>
+        <img src="{{this.imgsrc}}" alt="LOONA Album">
     </li>
     {{/each}}
 </ul>
